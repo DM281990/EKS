@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eks-demo-mysql
+spec:
+  type: ExternalName
+  externalName: eks-key-rotation.cd60w8es20f2.us-east-1.rds.amazonaws.com
