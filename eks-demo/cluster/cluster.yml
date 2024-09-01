@@ -2,7 +2,7 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: eks-demo
+  name: eks-demo-1
   region: us-east-1
   version: "1.30"
 
@@ -23,7 +23,7 @@ vpc:
 nodeGroups:
   - name: ng-1
     labels: { role: backend }
-    instanceType: t3.micro
+    instanceType: t3.small
     desiredCapacity: 3
     minSize: 3
     maxSize: 5
@@ -44,3 +44,4 @@ iam:
         namespace: kube-system
       attachPolicyARNs:
         - arn:aws:iam::253490763368:policy/AWSLoadBalancerControllerIAMPolicy
+        - arn:aws:iam::253490763368:policy/csi-eks-access-secrets-manager
