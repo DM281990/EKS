@@ -91,17 +91,29 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-volumes: []
-# - name: foo
+#volumes: []
+#  - name: db-creds
 #   secret:
-#     secretName: mysecret
+#     secretName: rds
 #     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+#volumeMounts:
+#  - name: "db-creds"
+#    mountPath: "/tmp"
+#    readOnly: true
+volumeMounts:
+  - name: "db-creds"
+    mountPath: "/secret"
+    readOnly: true
+
+volumes:
+  - name: db-creds
+    csi:
+      driver: secrets-store.csi.k8s.io
+      readOnly: true
+      volumeAttributes:
+        secretProviderClass: "db-aws-secrets"
 
 nodeSelector: {}
 

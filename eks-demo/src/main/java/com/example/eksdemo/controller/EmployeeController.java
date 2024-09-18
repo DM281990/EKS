@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.eksdemo.model.Employee;
@@ -26,7 +28,7 @@ public class EmployeeController {
 	@Autowired
 	EmployeeRepository employeeRepository;
 
-	@PostMapping
+    @RequestMapping(method= RequestMethod.POST)
 	public void createEmployee(@RequestBody com.example.eksdemo.dto.Employee employee) {
 		Employee emp = new Employee();
 		emp.setEmployeeName(employee.getName());
@@ -34,7 +36,7 @@ public class EmployeeController {
 		employeeRepository.save(emp);
 	}
 
-	@GetMapping("/{employeeId}")
+    @RequestMapping(value="/{employeeId}", method= RequestMethod.GET)
 	public ResponseEntity<Employee> getEmployee(@PathVariable("employeeId") String employeeId) {
 		Optional<Employee> employee = employeeRepository.findById(Integer.parseInt(employeeId));
 		if (employee.isPresent()) {

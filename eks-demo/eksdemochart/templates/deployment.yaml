@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "eksdemochart.serviceAccountName" . }}
+      serviceAccountName: aws-load-balancer-controller-sa1
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

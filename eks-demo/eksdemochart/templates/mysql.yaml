@@ -4,4 +4,4 @@ metadata:
   name: eks-demo-mysql
 spec:
   type: ExternalName
-  externalName: eks-key-rotation.cd60w8es20f2.us-east-1.rds.amazonaws.com
+  externalName: eks-demo-db.cd60w8es20f2.us-east-1.rds.amazonaws.com
